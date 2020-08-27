@@ -38,7 +38,7 @@ lazy val extractSuite = taskKey[Seq[File]]("Extracts the Json-LD suite from a ta
 lazy val root = project
   .in(file("."))
   .enablePlugins(JmhPlugin)
-  .settings(name := "jsonLdBenchmarks", moduleName := "jsonLdBenchmarks")
+  .settings(name := "jsonld-benchmarks", moduleName := "jsonld-benchmarks")
   .settings(noPublish, compilation)
   .settings(
     libraryDependencies       ++= Seq(
