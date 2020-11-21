@@ -35,17 +35,17 @@ The provided results are the ratio between the throughput obtained by Json-LD Ja
 
 |         | Number of tests | Ratio (Json-LD Java / Titanium) |
 |---------|:---------------:|:-------------------------------:|
-| compact |        89       |               8.83              |
-| expand  |        83       |              11.05              |
-| flatten |        45       |              10.80              |
-| frame   |        42       |              15.04              |
-| fromRdf |        30       |               5.93              |
-| toRdf   |       127       |              11.71              |
-| Total   |       416       |              10.56              |
+| compact |        89       |               9.39              |
+| expand  |        83       |               9.11              |
+| flatten |        45       |              12.30              |
+| frame   |        42       |              19.04              |
+| fromRdf |        30       |               5.04              |
+| toRdf   |       127       |              11.88              |
+| Total   |       416       |              12.88              |
 
 from the benchmark results the **Json-LD Java implementation is 10 times faster in average than Titanium**. 
 
 This difference in performance can be caused by the greater complexity of the different algorithms in Json-LD 1.1 due to the introduction of many new features. 
 
-The fact that Titanium is a very recent library (at the time of writing, 27.08.2020) can also explain part of the difference in benchmark results, compared to a mature Json-LD Java.
+The fact that Titanium is a very recent library (at the time of writing, 21.11.2020) can also explain part of the difference in benchmark results, compared to a mature Json-LD Java.
 
