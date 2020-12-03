@@ -21,7 +21,7 @@ val jsonldjavaVersion  = "0.13.2"
 val log4jVersion       = "2.1"
 val scalaTestVersion   = "3.2.0"
 val slf4jVersion       = "1.7.30"
-val titaniumVersion    = "0.8.5"
+val titaniumVersion    = "0.8.6"
 
 lazy val circeParser = "io.circe"                %% "circe-parser"     % circeVersion
 lazy val jakartaJson = "org.glassfish"            % "jakarta.json"     % jakartaJsonVersion
