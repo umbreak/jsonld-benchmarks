@@ -8,7 +8,7 @@ import ch.epfl.bluebrain.jsonld.benchmark.utils.{CirceEq, Resources}
 import io.circe.Json
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpecLike
-import org.scalatest.{BeforeAndAfterAll, OptionValues}
+import org.scalatest.{BeforeAndAfterAll, CancelAfterFailure, OptionValues}
 
 class JsonLdTestSuiteSpec
     extends AnyWordSpecLike
@@ -16,7 +16,8 @@ class JsonLdTestSuiteSpec
     with Resources
     with OptionValues
     with CirceEq
-    with BeforeAndAfterAll {
+    with BeforeAndAfterAll
+    with CancelAfterFailure {
 
   override protected def beforeAll(): Unit = {
     Locale.setDefault(Locale.US)
@@ -32,8 +33,10 @@ class JsonLdTestSuiteSpec
       val entries = JsonLdTestSuite(excludeJsonLdJava ++ excludeRemoteContext)
       entries.foreach { entry =>
         (entry.run[JsonLdJava], entry.expect) match {
-          case (result: Json, expect: Json)     => result should equalIgnoreArrayOrder(expect)
-          case (result: String, expect: String) => result shouldEqual expect
+          case (result: Json, expect: Json)     =>
+            result should equalIgnoreArrayOrder(expect)
+          case (result: String, expect: String) =>
+            result shouldEqual expect
           case _                                => fail()
         }
       }
@@ -43,7 +46,8 @@ class JsonLdTestSuiteSpec
       val entries = JsonLdTestSuite(excludeTitanium ++ excludePassedTitaniumButWrongEquality ++ excludeRemoteContext)
       entries.foreach { entry =>
         (entry.run[Titanium], entry.expect) match {
-          case (result: Json, expect: Json)     => result should equalIgnoreArrayOrder(expect)
+          case (result: Json, expect: Json)     =>
+            result should equalIgnoreArrayOrder(expect)
           case (result: String, expect: String) =>
             sortedSeq(result) shouldEqual sortedSeq(expect)
           case _                                => fail()

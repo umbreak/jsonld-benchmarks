@@ -1,4 +1,4 @@
-val jarchiveLibVersion = "1.1.0"
+val jarchiveLibVersion = "1.2.0"
 lazy val jarchiveLib   = "org.rauschig" % "jarchivelib" % jarchiveLibVersion
 
 libraryDependencies ++= Seq(jarchiveLib)

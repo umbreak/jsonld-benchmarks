@@ -7,9 +7,9 @@ import ch.epfl.bluebrain.jsonld.benchmark.JsonLdImplementations.{JsonLdJava, Tit
 import ch.epfl.bluebrain.jsonld.benchmark.suite.JsonLdTestEntry._
 import ch.epfl.bluebrain.jsonld.benchmark.suite.JsonLdTestEntry
 import com.apicatalog.jsonld.JsonLd
-import com.apicatalog.jsonld.api.JsonLdOptions.RdfDirection
+import com.apicatalog.jsonld.JsonLdOptions.RdfDirection
 import com.apicatalog.jsonld.document.{Document, JsonDocument, RdfDocument}
-import com.apicatalog.jsonld.lang.Version
+import com.apicatalog.jsonld.JsonLdVersion
 import com.github.jsonldjava.core.{JsonLdConsts, JsonLdProcessor}
 import com.github.jsonldjava.utils.JsonUtils
 import io.circe.Json
@@ -41,7 +41,7 @@ object JsonLdTestExecutor {
     parse(str).toOption.get
 
   implicit val titaniumExecutor: JsonLdTestExecutor[Titanium] = new JsonLdTestExecutor[Titanium] {
-    import com.apicatalog.jsonld.api.JsonLdOptions
+    import com.apicatalog.jsonld.JsonLdOptions
 
     //TODO: Hack while the issue with overridden ops base to context base exists
     private def hasValidBase(entry: JsonLdTestEntry): Boolean = {
@@ -64,7 +64,7 @@ object JsonLdTestExecutor {
     implicit private def jsonldOpts(entry: JsonLdTestEntry): JsonLdOptions = {
       val ops = new JsonLdOptions()
       entry.opts.get("produceGeneralizedRdf").flatMap(_.asBoolean).foreach(ops.setProduceGeneralizedRdf)
-      entry.opts.get("processingMode").flatMap(_.asString).foreach(v => ops.setProcessingMode(Version.of(v)))
+      entry.opts.get("processingMode").flatMap(_.asString).foreach(v => ops.setProcessingMode(JsonLdVersion.of(v)))
       entry.opts.get("omitGraph").flatMap(_.asBoolean).foreach(ops.setOmitGraph(_))
       entry.opts.get("compactArrays").flatMap(_.asBoolean).foreach(ops.setCompactArrays)
       entry.opts.get("useNativeTypes").flatMap(_.asBoolean).foreach(ops.setUseNativeTypes)
