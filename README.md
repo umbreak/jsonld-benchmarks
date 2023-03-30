@@ -4,8 +4,19 @@ A benchmark of the following JSON-LD implementations:
 - [Titanium](https://github.com/filip26/titanium-json-ld): Implements the JSON-LD 1.1 spec with a [high coverage](https://w3c.github.io/json-ld-api/reports/#subj_Titanium_Java).
 - [Json-LD Java](https://github.com/jsonld-java/jsonld-java): Implements the JSON-LD 1.0 spec with a [high coverage](https://json-ld.org/test-suite/reports/#subj_7). Implements part of the JSON-LD 1.1 API (still [low coverage](https://github.com/jsonld-java/jsonld-java/pull/283)).
 
+## Benchmark data
+
 The benchmarks use a subset of [W3C compliance test suite for JSON-LD 1.1](https://w3c.github.io/json-ld-api/tests/).
-In order to compare the 2 implementations, we need the subset of test entries which pass in both implementations. Because of the low ow coverage for Json-LD Java on Json-LD 1.1 spec this subset is sometimes small.
+The benchmark data is in [src/test/resources/json-ld-11.org.tgz](src/test/resources/json-ld-11.org.tgz).
+It's a big bunch of tiny files: 643kb in 2237 files (average 294 bytes per file).
+In order to compare the 2 implementations, we need the subset of test entries that pass in both implementations. Because of the low ow coverage for Json-LD Java on Json-LD 1.1 spec this subset is sometimes small.
+
+https://github.com/filip26/titanium-json-ld/issues/184 discusses benchmark results on another dataset:
+- https://atom.cuzk.cz/api/package_list.jsonld, which is a 10Mb file with very simple structure: array of 130k values (see https://github.com/rubensworks/jsonld-streaming-parser.js/issues/82#issuecomment-1028056049) for the structure).
+- It takes about 50 minutes to transform to RDF using Titanium, and 20 minutes using jsonld-java (which is also too much for what it is).
+- It matches the [JSON-LD 1.1 streaming profile](https://w3c.github.io/json-ld-streaming/), so potentially could be parsed with limited memory, and much faster.
+
+Please let me know if you know of any other JSONLD benchmarking datasets/attempts.
 
 ## Running the benchmarks
 
